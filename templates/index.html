@@ -16,7 +16,7 @@
 
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" as="style">
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
    :root {
       --primary-blue: #003366;
@@ -45,20 +45,66 @@
 
     /* Hero */
     .hero {
-      position: relative;
-      min-height: 88vh;
-      display: grid;
-      place-items: center;
-      color: var(--white);
-      text-align: center;
-      background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
-                  url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2060&auto=format&fit=crop') center/cover no-repeat;
-    }
-    .hero h1 { font-size: clamp(2.1rem, 4vw, 3.4rem); font-weight: 800; margin-bottom: .4rem; }
-    .hero h1 .brand { color: var(--accent-red); }
-    .hero p.lead { font-size: clamp(1.05rem, 1.8vw, 1.25rem); opacity: .95; margin-bottom:.4rem; }
-    .btn-cta { background: var(--accent-red); border-color: var(--accent-red); color: #fff; }
-    .btn-cta:hover { background: var(--accent-red-700); border-color: var(--accent-red-700); transform: translateY(-2px) scale(1.03); }
+  position: relative;
+  min-height: 88vh;
+  display: grid;
+  place-items: center;
+  color: var(--white);
+  text-align: center;
+  overflow: hidden; /* pour que la vidéo ne dépasse pas */
+}
+
+.hero video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55); /* overlay sombre comme avant */
+  z-index: 1;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2; /* texte au-dessus de la vidéo */
+}
+
+.hero h1 {
+  font-size: clamp(2.1rem, 4vw, 3.4rem);
+  font-weight: 800;
+  margin-bottom: .4rem;
+}
+
+.hero h1 .brand {
+  color: var(--accent-red);
+}
+
+.hero p.lead {
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  opacity: .95;
+  margin-bottom: .4rem;
+}
+
+.btn-cta {
+  background: var(--accent-red);
+  border-color: var(--accent-red);
+  color: #fff;
+}
+
+.btn-cta:hover {
+  background: var(--accent-red-700);
+  border-color: var(--accent-red-700);
+  transform: translateY(-2px) scale(1.03);
+}
+
 
     /* Sections */
     .section-title { color: var(--primary-blue); font-weight: 800; text-transform: uppercase; letter-spacing: .5px; }
@@ -155,15 +201,21 @@
   }
 </style>
 
-  <!-- HERO -->
-  <header class="hero" id="hero">
-    <div class="container" data-aos="fade-up">
-      <h1>Bienvenue chez <span class="brand">ACROW DZ</span></h1>
-      <p class="lead mt-2">Votre partenaire en solutions de coffrage et échafaudage</p>
-      <p>Des solutions fiables et innovantes pour tous vos projets de construction.</p>
-      <a href="#services" class="btn btn-cta btn-lg mt-2"><i class="bi bi-lightning-fill me-1" aria-hidden="true"></i> Découvrir nos services</a>
-    </div>
-  </header>
+<header class="hero" id="hero">
+  <!-- Video background -->
+  <video autoplay muted loop playsinline class="video-bg">
+    <source src="{{ url_for('static', filename='img/hero.mp4') }}" type="video/mp4">
+    Votre navigateur ne supporte pas la lecture vidéo.
+  </video>
+
+  <div class="container" data-aos="fade-up">
+    <h1>Bienvenue chez <span class="brand">ACROW DZ</span></h1>
+    <p class="lead mt-2">Votre partenaire en solutions de coffrage et échafaudage</p>
+    <p>Des solutions fiables et innovantes pour tous vos projets de construction.</p>
+    <a href="#services" class="btn btn-cta btn-lg mt-2"><i class="bi bi-lightning-fill me-1" aria-hidden="true"></i> Découvrir nos services</a>
+  </div>
+</header>
+
 
   <!-- À PROPOS -->
   <section class="py-5" id="about">
