@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="ACROW DZ — Vente, location et études techniques de matériel de coffrage et échafaudage en Algérie. Solutions fiables et sécurisées pour le BTP et l'industrie." />
+  <meta name="theme-color" content="#003366" />
+  <title>ACROW DZ — Coffrage & Échafaudage</title>
+
+  
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" as="style">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" as="style">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <style>
+   :root {
+      --primary-blue: #003366;
+      --accent-red:  #cc0000;
+      --accent-red-700:#990000;
+      --light-bg:    #f8f9fa;
+      --text-dark:   #1f2937;
+      --white:       #ffffff;
+    }
+
+    /* Transitions globales (léger) */
+    * { transition: all .20s ease-in-out; }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif; color: var(--text-dark); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+    section { scroll-margin-top: 84px; }
+
+    /* Navbar */
+    .navbar {
+      background: rgba(0,51,102,0.92);
+      backdrop-filter: blur(6px);
+    }
+    .navbar.navbar-dark .navbar-nav .nav-link { color: var(--white); opacity: .95; }
+    .navbar.navbar-dark .navbar-nav .nav-link:hover { color: var(--accent-red); opacity: 1; }
+    .navbar-brand { color: var(--white); font-weight: 700; letter-spacing: .3px; }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      text-align: center;
+      background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+                  url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2060&auto=format&fit=crop') center/cover no-repeat;
+    }
+    .hero h1 { font-size: clamp(2.1rem, 4vw, 3.4rem); font-weight: 800; margin-bottom: .4rem; }
+    .hero h1 .brand { color: var(--accent-red); }
+    .hero p.lead { font-size: clamp(1.05rem, 1.8vw, 1.25rem); opacity: .95; margin-bottom:.4rem; }
+    .btn-cta { background: var(--accent-red); border-color: var(--accent-red); color: #fff; }
+    .btn-cta:hover { background: var(--accent-red-700); border-color: var(--accent-red-700); transform: translateY(-2px) scale(1.03); }
+
+    /* Sections */
+    .section-title { color: var(--primary-blue); font-weight: 800; text-transform: uppercase; letter-spacing: .5px; }
+    .section-sub { color: #6b7280; max-width: 820px; margin: 0 auto 1rem; }
+
+    /* Cards */
+    .card { border: 0; border-radius: 1rem; overflow: hidden; }
+    .card-hover { transition: transform .25s ease, box-shadow .25s ease; }
+    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,.12); }
+    .card .badge-top {
+      position: absolute; top: .85rem; left: .85rem; z-index: 2;
+      background: var(--accent-red); color: var(--white); border-radius: 999px; padding: .35rem .7rem; font-size: .75rem; font-weight: 600;
+    }
+    .card-img-top { height: 210px; object-fit: cover; width:100%; display:block; }
+    @media (min-width: 992px) { .card-img-top { height: 230px; } }
+
+    /* Bandes */
+    .band-light { background: var(--light-bg); }
+
+    /* Compteurs */
+    .counter-box { text-align: center; padding: 2rem 1rem; }
+    .counter { font-size: 2.2rem; font-weight: 800; color: var(--accent-red); }
+    .counter-label { margin-top: .25rem; font-weight: 600; color: #374151; }
+
+    /* Contact */
+    .contact-icon { width: 42px; height: 42px; display: grid; place-items: center; border-radius: .75rem; background: rgba(0,51,102,.08); color: var(--primary-blue); }
+
+    /* Footer */
+    footer { background: var(--primary-blue); color: var(--white); }
+    footer a { color: var(--accent-red); text-decoration: none; }
+    footer a:hover { color: var(--white); text-decoration: underline; }
+
+    /* Back to top */
+    #backToTop {
+      position: fixed; right: 18px; bottom: 22px; z-index: 50; display: none;
+      width: 46px; height: 46px; border-radius: 999px; border: none; cursor: pointer;
+      background: var(--accent-red); color: var(--white); box-shadow: 0 10px 25px rgba(0,0,0,.2);
+      display:grid; place-items:center;
+    }
+    #backToTop:hover { background: var(--accent-red-700); }
+  </style>
+</head>
+<body>
+
+<!-- Navbar inspirée d'acrow.co -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top border-bottom shadow-sm py-0" aria-label="Navigation principale">
+  <div class="container d-flex align-items-center justify-content-between">
+
+    <!-- Logo seul -->
+    <a class="navbar-brand p-0" href="#hero">
+      <img src="{{ url_for('static', filename='img/logo.png') }}"
+           alt="Logo ACROW DZ"
+           class="logo-navbar">
+    </a>
+
+    <!-- Burger menu -->
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Basculer la navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Liens -->
+    <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link px-3" href="#about">À propos</a></li>
+        <li class="nav-item"><a class="nav-link px-3" href="#services">Services</a></li>
+        <li class="nav-item"><a class="nav-link px-3" href="#produits">Produits</a></li>
+        <li class="nav-item"><a class="nav-link px-3" href="#projets">Projets</a></li>
+        <li class="nav-item"><a class="nav-link px-3" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Style personnalisé -->
+<style>
+  .logo-navbar {
+    height: 85px; /* Augmente la taille du logo */
+    width: auto;
+    display: block;
+  }
+
+  .nav-link {
+    font-weight: 500;
+    color: #212529 !important;
+    transition: color 0.25s ease;
+  }
+
+  .nav-link:hover {
+    color: #0d6efd !important;
+  }
+
+  .navbar {
+    min-height: 80px; /* Hauteur de navbar équilibrée avec le logo */
+  }
+</style>
+
+  <!-- HERO -->
+  <header class="hero" id="hero">
+    <div class="container" data-aos="fade-up">
+      <h1>Bienvenue chez <span class="brand">ACROW DZ</span></h1>
+      <p class="lead mt-2">Votre partenaire en solutions de coffrage et échafaudage</p>
+      <p>Des solutions fiables et innovantes pour tous vos projets de construction.</p>
+      <a href="#services" class="btn btn-cta btn-lg mt-2"><i class="bi bi-lightning-fill me-1" aria-hidden="true"></i> Découvrir nos services</a>
+    </div>
+  </header>
+
+  <!-- À PROPOS -->
+  <section class="py-5" id="about">
+    <div class="container">
+      <h2 class="text-center section-title" data-aos="zoom-in">À propos de ACROW DZ</h2>
+      <p class="section-sub text-center" data-aos="fade-up">Fondée en 2012, ACROW DZ est une entreprise leader en Algérie dans la vente, la location et l’étude technique de matériel de coffrage et d’échafaudage. Nous accompagnons des projets majeurs dans le BTP, l’industrie pétrolière & gazière et les infrastructures.</p>
+      <div class="row g-4 mt-3">
+        <div class="col-md-6" data-aos="fade-right">
+          <div class="p-4 rounded-4 band-light h-100">
+            <h5 class="fw-bold mb-2"><i class="bi bi-shield-check me-2 text-danger" aria-hidden="true"></i>Notre mission</h5>
+            <p class="mb-0">Fournir des solutions techniques adaptées, fiables et sécurisées, tout en assurant un service client exemplaire.</p>
+          </div>
+        </div>
+        <div class="col-md-6" data-aos="fade-left">
+          <div class="p-4 rounded-4 band-light h-100">
+            <h5 class="fw-bold mb-2"><i class="bi bi-people me-2 text-danger" aria-hidden="true"></i>Pourquoi nous choisir</h5>
+            <ul class="mb-0 ps-3">
+              <li>Expertise technique et accompagnement de A à Z</li>
+              <li>Matériel conforme aux normes internationales</li>
+              <li>Délais maîtrisés et sécurité prioritaire</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES (avec photos en cards) -->
+  <section class="py-5 band-light" id="services">
+    <div class="container">
+      <h2 class="text-center section-title" data-aos="zoom-in">Nos Services</h2>
+      <div class="row g-4 mt-1">
+        <div class="col-md-4" data-aos="fade-up">
+          <div class="card card-hover h-100 position-relative">
+            <span class="badge-top">Vente</span>
+            <img class="card-img-top" src="{{ url_for('static', filename='img/cofrage.jpg') }}" alt="Vente de matériel" loading="lazy" width="1200" height="800" />
+            <div class="card-body">
+              <h5 class="card-title">Vente de matériel</h5>
+              <p class="card-text">Large gamme de coffrage et d’échafaudage certifiés, conformes aux normes internationales.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="card card-hover h-100 position-relative">
+            <span class="badge-top">Location</span>
+            <img class="card-img-top" src="{{ url_for('static', filename='img/location.jpg') }}" alt="Location de matériel" loading="lazy" width="1200" height="800" />
+            <div class="card-body">
+              <h5 class="card-title">Location de matériel</h5>
+              <p class="card-text">Formules flexibles (courte/longue durée) pour optimiser vos coûts sans compromis sur la qualité.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="card card-hover h-100 position-relative">
+            <span class="badge-top">Études</span>
+            <img class="card-img-top" src="{{ url_for('static', filename='img/etude.jpg') }}" alt="Études techniques" loading="lazy" width="1200" height="800" />
+            <div class="card-body">
+              <h5 class="card-title">Études techniques</h5>
+              <p class="card-text">Études personnalisées par nos ingénieurs pour optimiser conception, sécurité et faisabilité.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUITS -->
+  <section class="py-5" id="produits">
+    <div class="container">
+      <h2 class="text-center section-title" data-aos="zoom-in">Nos Produits</h2>
+      <div class="row g-4 mt-1">
+        <div class="col-md-4" data-aos="fade-up">
+          <div class="card card-hover h-100">
+            <img class="card-img-top" src="{{ url_for('static', filename='img/metal.jpeg') }}" alt="Coffrage métallique" loading="lazy" width="1200" height="800" />
+            <div class="card-body">
+              <h5 class="card-title">Coffrage métallique modulable</h5>
+              <p class="card-text">Système polyvalent pour tous types de constructions, facile à monter et démonter.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="120">
+          <div class="card card-hover h-100">
+            <img class="card-img-top" src="{{ url_for('static', filename='img/echa.jpeg') }}" alt="Échafaudage tubulaire" loading="lazy" width="1200" height="800" />
+            <div class="card-body">
+              <h5 class="card-title">Échafaudage tubulaire</h5>
+              <p class="card-text">Structures sécurisées et conformes aux normes pour vos travaux en hauteur.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="240">
+          <div class="card card-hover h-100">
+            <img class="card-img-top" src="{{ url_for('static', filename='img/mat.webp') }}" alt="Accessoires et consommables" loading="lazy" width="1200" height="800" />
+            <div class="card-body">
+              <h5 class="card-title">Accessoires & consommables</h5>
+              <p class="card-text">Large choix d’éléments complémentaires pour garantir solidité et sécurité.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJETS (avec photos en cards) -->
+  <!-- PROJETS (avec photos en cards + animations modernes) -->
+<section class="py-5 bg-light" id="projets">
+  <div class="container">
+    <h2 class="text-center section-title" data-aos="zoom-in" data-aos-duration="800">Projets réalisés</h2>
+    <p class="section-sub text-center" data-aos="fade-up" data-aos-duration="800">
+      Quelques réalisations phares où nos solutions ont permis d’atteindre efficacité, sécurité et respect des délais.
+    </p>
+
+    <div class="row g-4 mt-1">
+      <!-- Carte 1 -->
+      <div class="col-md-4" data-aos="flip-left" data-aos-duration="1000">
+        <div class="card card-hover h-100 shadow-lg border-0 rounded-3">
+          <div class="card-img-wrapper overflow-hidden">
+            <img class="card-img-top img-zoom" src="{{ url_for('static', filename='img/metro.jpg') }}" alt="Metro d'Alger" loading="lazy" />
+          </div>
+          <div class="card-body text-center">
+            <h5 class="card-title fw-bold">Metro d'Alger</h5>
+            <p class="card-text">Fourniture et installation de systèmes de coffrage et échafaudage pour la construction du métro d'Alger.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte 2 -->
+      <div class="col-md-4" data-aos="flip-up" data-aos-delay="200" data-aos-duration="1000">
+        <div class="card card-hover h-100 shadow-lg border-0 rounded-3">
+          <div class="card-img-wrapper overflow-hidden">
+            <img class="card-img-top img-zoom" src="{{ url_for('static', filename='img/marina.jpg') }}" alt="Marina Bay" loading="lazy" />
+          </div>
+          <div class="card-body text-center">
+            <h5 class="card-title fw-bold">Marina Bay</h5>
+            <p class="card-text">Fourniture de systèmes de coffrage et échafaudage pour un projet emblématique à Marina Bay.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte 3 -->
+      <div class="col-md-4" data-aos="flip-right" data-aos-delay="400" data-aos-duration="1000">
+        <div class="card card-hover h-100 shadow-lg border-0 rounded-3">
+          <div class="card-img-wrapper overflow-hidden">
+            <img class="card-img-top img-zoom" src="{{ url_for('static', filename='img/aa.jpg') }}" alt="Siège Circonscription Bouzareah" loading="lazy" />
+          </div>
+          <div class="card-body text-center">
+            <h5 class="card-title fw-bold">Circonscription de Bouzareah</h5>
+            <p class="card-text">Réalisation et aménagement du siège de la circonscription administrative de Bouzareah.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Effets CSS -->
+<style>
+  /* Zoom effet image au survol */
+  .img-zoom {
+    transition: transform 0.5s ease;
+  }
+  .card:hover .img-zoom {
+    transform: scale(1.1);
+  }
+
+  /* Effet card lift */
+  .card-hover {
+    transition: all 0.4s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  }
+
+  /* Ajustement image */
+  .card-img-wrapper {
+    max-height: 220px;
+  }
+  .card-img-top {
+    height: 220px;
+    object-fit: cover;
+  }
+</style>
+
+  <!-- COMPTEURS -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-6 col-md-3">
+          <div class="counter-box" data-aos="fade-up">
+            <div class="counter" data-target="15">0</div>
+            <div class="counter-label">Années d’expérience</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="counter-box" data-aos="fade-up" data-aos-delay="120">
+            <div class="counter" data-target="120">0</div>
+            <div class="counter-label">Projets réalisés</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="counter-box" data-aos="fade-up" data-aos-delay="240">
+            <div class="counter" data-target="50">0</div>
+            <div class="counter-label">Clients satisfaits</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="counter-box" data-aos="fade-up" data-aos-delay="360">
+            <div class="counter" data-target="8">0</div>
+            <div class="counter-label">Secteurs couverts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- Section Clients -->
+<section id="clients" class="py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="mb-4 fw-bold">Ils nous font confiance</h2>
+    <p class="text-muted mb-5">Nous collaborons avec des entreprises leaders dans leurs domaines.</p>
+
+    <!-- Slider -->
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper align-items-center">
+        <!-- Exemple de logos -->
+        <div class="swiper-slide"><img src="{{ url_for('static', filename='img/cosider.png') }}" alt="Cosider" class="client-logo"></div>
+        <div class="swiper-slide"><img src="{{ url_for('static', filename='img/ensp.png') }}" alt="ENSP" class="client-logo"></div>
+        <div class="swiper-slide"><img src="{{ url_for('static', filename='img/gcb.png') }}" alt="GCB" class="client-logo"></div>
+        <div class="swiper-slide"><img src="{{ url_for('static', filename='img/cevital.png') }}" alt="Cevital" class="client-logo"></div>
+        <div class="swiper-slide"><img src="{{ url_for('static', filename='img/somik.png') }}" alt="Client 5" class="client-logo"></div>
+        <div class="swiper-slide"><img src="{{ url_for('static', filename='img/sapta.png') }}" alt="Client 6" class="client-logo"></div>
+        <div class="swiper-slide"><img src="{{ url_for('static', filename='img/seror.png') }}" alt="Client 7" class="client-logo"></div>
+        <div class="swiper-slide"><img src="{{ url_for('static', filename='img/gtp.png') }}" alt="Client 8" class="client-logo"></div>
+        <!-- 👉 Ajoute autant que tu veux -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Styles -->
+<style>
+  #clients {
+    background: #f8f9fa;
+  }
+  .client-logo {
+    max-height: 90px;
+    opacity: 0.8;
+   
+    transition: all 0.3s ease;
+    margin: auto;
+  }
+  .client-logo:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.05);
+  }
+</style>
+
+<!-- SwiperJS (CDN) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- Script Slider -->
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 5,
+    spaceBetween: 30,
+    loop: true,
+    speed: 5000, // vitesse du défilement
+    autoplay: {
+      delay: 0, // pas de pause
+      disableOnInteraction: false,
+    },
+    allowTouchMove: false, // désactive le drag (optionnel)
+    breakpoints: {
+      320: { slidesPerView: 2, spaceBetween: 20 },
+      768: { slidesPerView: 3, spaceBetween: 25 },
+      1024: { slidesPerView: 5, spaceBetween: 30 }
+    }
+  });
+</script>
+
+  <!-- CONTACT -->
+  <section class="py-5" id="contact">
+    <div class="container">
+      <h2 class="text-center section-title" data-aos="zoom-in">Contactez-nous</h2>
+      <div class="row g-4 mt-1 align-items-start">
+        <div class="col-md-6" data-aos="fade-right">
+          <div class="d-flex align-items-center mb-3">
+            <span class="contact-icon me-3"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i></span>
+            <div><strong>Adresse</strong><br/>Cité des Travailleurs, lot n°9 groupe 2
+
+16033 Dar El Beida</div>
+          </div>
+          <div class="d-flex align-items-center mb-3">
+            <span class="contact-icon me-3"><i class="bi bi-telephone-fill" aria-hidden="true"></i></span>
+            <div><strong>Téléphone</strong><br/> 028 23 09 45</div>
+          </div>
+          <div class="d-flex align-items-center">
+            <span class="contact-icon me-3"><i class="bi bi-envelope-fill" aria-hidden="true"></i></span>
+            <div><strong>Email</strong><br/> acrow-dz@acrow.co </div>
+          </div>
+        </div>
+        <div class="col-md-6" data-aos="fade-left">
+          <form id="contactForm" class="p-4 rounded-4 band-light" aria-label="Formulaire de contact">
+            <div class="mb-3">
+              <label class="form-label">Votre nom</label>
+              <input type="text" class="form-control" name="name" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Votre email</label>
+              <input type="email" class="form-control" name="email" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Votre message</label>
+              <textarea class="form-control" rows="3" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-cta w-100">Envoyer</button>
+            <div id="formMsg" class="text-success mt-2" style="display:none">✅ Merci ! Votre message a été envoyé.</div>
+          </form>
+          
+<!-- Flash messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="mt-2">
+      {% for category, msg in messages %}
+        <div class="alert alert-{{ category }}">{{ msg }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-4">
+    <div class="container text-center small">
+      <div class="mb-2">© 2025 ACROW DZ — Tous droits réservés.</div>
+      <div>Suivez-nous :
+        <a href="" class="ms-1 me-1" target="_blank" rel="noopener noreferrer">Facebook</a> ·
+        <a href="" class="ms-1 me-1" target="_blank" rel="noopener noreferrer">LinkedIn</a> ·
+        <a href="" class="ms-1" target="_blank" rel="noopener noreferrer">Twitter</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button id="backToTop" aria-label="Retour en haut"><i class="bi bi-arrow-up" aria-hidden="true"></i></button>
+
+  <!-- JS: Bootstrap + AOS + Interactions (defer for non-blocking) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // AOS
+      if (window.AOS) AOS.init({ duration: 900, once: true });
+
+      // Collapse navbar on click (mobile)
+      try {
+        const navLinks = document.querySelectorAll('.nav-link');
+        const bsCollapseEl = document.getElementById('mainNav');
+        const bsCollapse = bootstrap ? bootstrap.Collapse.getOrCreateInstance(bsCollapseEl) : null;
+        navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            if (window.innerWidth < 992 && bsCollapse) bsCollapse.hide();
+          });
+        });
+      } catch (e) { /* bootstrap absent -> ignore */ }
+
+      // Back to top visibility & behavior
+      const backToTop = document.getElementById('backToTop');
+      const toggleBack = () => backToTop.style.display = window.scrollY > 280 ? 'grid' : 'none';
+      toggleBack();
+      window.addEventListener('scroll', toggleBack);
+      backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+      // Counters: animate when visible
+      const animateCounter = (el) => {
+        const target = parseInt(el.getAttribute('data-target') || '0', 10);
+        const duration = 1400;
+        const start = performance.now();
+        const from = 1;
+        const step = (now) => {
+          const progress = Math.min((now - start) / duration, 1);
+          el.textContent = Math.floor(progress * (target - from) + from);
+          if (progress < 1) requestAnimationFrame(step);
+          else el.textContent = target;
+        };
+        requestAnimationFrame(step);
+      };
+
+      const io = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counterEl = entry.target.querySelector('.counter');
+            if (counterEl) animateCounter(counterEl);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+
+      document.querySelectorAll('.counter-box').forEach(box => io.observe(box));
+
+      // Contact form local submit (demo)
+      const form = document.getElementById('contactForm');
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const msg = document.getElementById('formMsg');
+          msg.style.display = 'block';
+          form.reset();
+          setTimeout(() => msg.style.display = 'none', 5000);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
