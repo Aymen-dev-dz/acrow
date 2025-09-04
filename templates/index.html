@@ -266,8 +266,7 @@
     </div>
   </section>
 
-  <!-- PROJETS (avec photos en cards) -->
-  <!-- PROJETS (avec photos en cards + animations modernes) -->
+<!-- PROJETS (Slider moderne avec 6 projets) -->
 <section class="py-5 bg-light" id="projets">
   <div class="container">
     <h2 class="text-center section-title" data-aos="zoom-in" data-aos-duration="800">Projets réalisés</h2>
@@ -275,77 +274,131 @@
       Quelques réalisations phares où nos solutions ont permis d’atteindre efficacité, sécurité et respect des délais.
     </p>
 
-    <div class="row g-4 mt-1">
-      <!-- Carte 1 -->
-      <div class="col-md-4" data-aos="flip-left" data-aos-duration="1000">
-        <div class="card card-hover h-100 shadow-lg border-0 rounded-3">
-          <div class="card-img-wrapper overflow-hidden">
-            <img class="card-img-top img-zoom" src="{{ url_for('static', filename='img/metro.jpg') }}" alt="Metro d'Alger" loading="lazy" />
-          </div>
-          <div class="card-body text-center">
-            <h5 class="card-title fw-bold">Metro d'Alger</h5>
-            <p class="card-text">Fourniture et installation de systèmes de coffrage et échafaudage pour la construction du métro d'Alger.</p>
+    <!-- Carousel -->
+    <div id="projetsCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
+      
+      <!-- Carousel inner -->
+      <div class="carousel-inner">
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+          <div class="row g-4 justify-content-center">
+            <!-- Carte 1 -->
+            <div class="col-md-4 col-sm-6" data-aos="flip-left" data-aos-duration="1000">
+              <div class="card card-hover h-100 shadow-lg border-0 rounded-3 overflow-hidden">
+                <img src="{{ url_for('static', filename='img/metro.jpg') }}" class="card-img-top img-zoom" alt="Metro d'Alger">
+                <div class="card-body text-center">
+                  <h5 class="card-title fw-bold">Metro d'Alger</h5>
+                  <p class="card-text">Fourniture et installation de systèmes de coffrage et échafaudage pour le métro d'Alger.</p>
+                </div>
+              </div>
+            </div>
+            <!-- Carte 2 -->
+            <div class="col-md-4 col-sm-6" data-aos="flip-up" data-aos-delay="200" data-aos-duration="1000">
+              <div class="card card-hover h-100 shadow-lg border-0 rounded-3 overflow-hidden">
+                <img src="{{ url_for('static', filename='img/marina.jpg') }}" class="card-img-top img-zoom" alt="Marina Bay">
+                <div class="card-body text-center">
+                  <h5 class="card-title fw-bold">Marina Bay</h5>
+                  <p class="card-text">Fourniture de systèmes de coffrage et échafaudage pour un projet emblématique à Marina Bay.</p>
+                </div>
+              </div>
+            </div>
+            <!-- Carte 3 -->
+            <div class="col-md-4 col-sm-6" data-aos="flip-right" data-aos-delay="400" data-aos-duration="1000">
+              <div class="card card-hover h-100 shadow-lg border-0 rounded-3 overflow-hidden">
+                <img src="{{ url_for('static', filename='img/aa.jpg') }}" class="card-img-top img-zoom" alt="Siège Circonscription Bouzareah">
+                <div class="card-body text-center">
+                  <h5 class="card-title fw-bold">Circonscription de Bouzareah</h5>
+                  <p class="card-text">Réalisation et aménagement du siège de la circonscription administrative de Bouzareah.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+          <div class="row g-4 justify-content-center">
+            <!-- Carte 4 -->
+            <div class="col-md-4 col-sm-6" data-aos="flip-left" data-aos-duration="1000">
+              <div class="card card-hover h-100 shadow-lg border-0 rounded-3 overflow-hidden">
+                <img src="{{ url_for('static', filename='img/amba.jpg') }}" class="card-img-top img-zoom" alt="Projet 4">
+                <div class="card-body text-center">
+                  <h5 class="card-title fw-bold"> Ambassade D'Allemagne</h5>
+                  <p class="card-text">Nouvelle Ambassade d’Allemagne – Coffrage & Échafaudage par ACROW DZ</p>
+                </div>
+              </div>
+            </div>
+            <!-- Carte 5 -->
+            <div class="col-md-4 col-sm-6" data-aos="flip-up" data-aos-delay="200" data-aos-duration="1000">
+              <div class="card card-hover h-100 shadow-lg border-0 rounded-3 overflow-hidden">
+                <img src="{{ url_for('static', filename='img/otma.jpg') }}" class="card-img-top img-zoom" alt="Projet 5">
+                <div class="card-body text-center">
+                  <h5 class="card-title fw-bold">Extension Station De Traitement El Othmania</h5>
+                  <p class="card-text">
+El Othmania treatment station extension for one-sided formwork.</p>
+                </div>
+              </div>
+            </div>
+            <!-- Carte 6 -->
+            <div class="col-md-4 col-sm-6" data-aos="flip-right" data-aos-delay="400" data-aos-duration="1000">
+              <div class="card card-hover h-100 shadow-lg border-0 rounded-3 overflow-hidden">
+                <img src="{{ url_for('static', filename='img/oo.jpeg') }}" class="card-img-top img-zoom" alt="Projet 6">
+                <div class="card-body text-center">
+                  <h5 class="card-title fw-bold">H20 & Soldier System</h5>
+                  <p class="card-text">Système H2O et Soldier Wall facile à assembler rapidement avec des poutres H20.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <!-- Carte 2 -->
-      <div class="col-md-4" data-aos="flip-up" data-aos-delay="200" data-aos-duration="1000">
-        <div class="card card-hover h-100 shadow-lg border-0 rounded-3">
-          <div class="card-img-wrapper overflow-hidden">
-            <img class="card-img-top img-zoom" src="{{ url_for('static', filename='img/marina.jpg') }}" alt="Marina Bay" loading="lazy" />
-          </div>
-          <div class="card-body text-center">
-            <h5 class="card-title fw-bold">Marina Bay</h5>
-            <p class="card-text">Fourniture de systèmes de coffrage et échafaudage pour un projet emblématique à Marina Bay.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Carte 3 -->
-      <div class="col-md-4" data-aos="flip-right" data-aos-delay="400" data-aos-duration="1000">
-        <div class="card card-hover h-100 shadow-lg border-0 rounded-3">
-          <div class="card-img-wrapper overflow-hidden">
-            <img class="card-img-top img-zoom" src="{{ url_for('static', filename='img/aa.jpg') }}" alt="Siège Circonscription Bouzareah" loading="lazy" />
-          </div>
-          <div class="card-body text-center">
-            <h5 class="card-title fw-bold">Circonscription de Bouzareah</h5>
-            <p class="card-text">Réalisation et aménagement du siège de la circonscription administrative de Bouzareah.</p>
-          </div>
-        </div>
-      </div>
+      <!-- Contrôles du carousel -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#projetsCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Précédent</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#projetsCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Suivant</span>
+      </button>
     </div>
   </div>
 </section>
 
-<!-- Effets CSS -->
+<!-- Styles supplémentaires -->
 <style>
-  /* Zoom effet image au survol */
-  .img-zoom {
-    transition: transform 0.5s ease;
-  }
-  .card:hover .img-zoom {
-    transform: scale(1.1);
-  }
-
-  /* Effet card lift */
   .card-hover {
-    transition: all 0.4s ease;
+    transition: transform 0.1s, box-shadow 0.3s;
+    cursor: pointer;
   }
   .card-hover:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
   }
-
-  /* Ajustement image */
-  .card-img-wrapper {
-    max-height: 220px;
+  .img-zoom {
+    transition: transform 0.5s;
   }
-  .card-img-top {
-    height: 220px;
-    object-fit: cover;
+  .img-zoom:hover {
+    transform: scale(1.1);
   }
 </style>
+
+
+      <!-- Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#projetsCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Précédent</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#projetsCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Suivant</span>
+      </button>
+    </div>
+  </div>
+</section>
+
 
   <!-- COMPTEURS -->
   <section class="py-5">
